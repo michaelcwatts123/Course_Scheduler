@@ -7,6 +7,9 @@
 //
 
 #include "Class.hpp"
+Class::Class(){
+    
+}
 Class::Class(double name, int size){
     courseNum = name;
     classSize = size;

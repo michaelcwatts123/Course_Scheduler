@@ -19,6 +19,7 @@ using namespace std;
 class Class{
 public:
     Class(double, int);
+    Class();
     int getSize();
     int getNumConflicts();
     double getCourseNum();

@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "Linked_List.hpp"
 #include "Distributions.hpp"
 #include "SectionSplit.hpp"
 #include "ConflictManager.hpp"
@@ -14,8 +15,31 @@ using namespace std;
 void menu(int& numCourse, int& numStudent, int& numCoursePerStudent, int& sectionSize, string& split, string& dist);
 int main(int argc, const char * argv[]) {
 
+    Class C1(1,5);
+    Class C2(2,5);
+    Class C3(3,5);
+    Class C4(4,5);
+    Class C5(5,5);
+    Linked_List LL;
+    LL.add(C1);
+    LL.add(C2);
+    LL.add(C3);
+    LL.add(C4);
+    LL.add(C5);
+    assert(LL.getLength() == 5);
+    assert(LL.search(C2) == true);
+    LL.remove(C2);
+    assert(LL.search(C2) == false);
+    assert(LL.getLength() == 4);
+    LL.remove(C1);
+    assert(LL.search(C1) == false);
+    assert(LL.getLength() == 3);
+    LL.remove(C5);
+    assert(LL.search(C5) == false);
+    assert(LL.getLength() == 2);
+    cout << "Sick" << endl;
     
-  
+  /*
     
     ConflictManager CM;
     vector<Student> students;
@@ -103,6 +127,7 @@ int main(int argc, const char * argv[]) {
 
 
     return 0;
+   */
 }
 void menu(int& numCourse, int& numStudent, int& numCoursePerStudent, int& sectionSize, string& split, string& dist){
     cout << "Enter number of courses" << endl;
