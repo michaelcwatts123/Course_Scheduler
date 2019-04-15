@@ -7,32 +7,37 @@
 //
 
 #include "ConflictManager.hpp"
+ConflictManager::ConflictManager(){
+    E.clear();
+}
 int ConflictManager::getTotal(){
     return total;
 }
-int ConflictManager::getDistinct(){
-    return conflicts.size();
+int ConflictManager::getDistTotal(){
+    return dist_total;
 }
-bool ConflictManager::distinctCheck(string A, string B){
-    for(int i = 0; i < conflicts.size(); i++){
-        Conflict C(conflicts.at(i).getA(), conflicts.at(i).getB());
-        if( (A == C.getA() || B == C.getB()) && (B == C.getA() || B == C.getB()) && (A != B)){
-            return false;
-        }
-    }
-    return true;
-}
-void ConflictManager::reset(){
-    conflicts.clear();
+vector<Linked_List> ConflictManager::getE(){
+    return E;
 }
 void ConflictManager::buildConflictList(Class C){
-    total += C.getConflictList().size();
-    for(int i = 0; i < C.getConflictList().size(); i++){
-        if(distinctCheck(to_string(C.getCourseNum()), to_string(C.getConflictList().at(i)))){
-            Conflict DC(to_string(C.getCourseNum()), to_string(C.getConflictList().at(i)));
-            conflicts.push_back(DC);
-            
-            
+    Linked_List class_to_add;
+    class_to_add.add(C);
+    int size = C.get_section_size();
+    for(int i = 0; i < C.getNumConflicts(); i++){
+        total++;
+        double name = C.getConflictList().at(i);
+        Class temp(i, size);
+        for(int j = 0; j < E.size(); j++){
+            if(E.at(j).getHead().getCourseNum() == name){
+                if(!E.at(j).search(C)){
+                    class_to_add.add(temp);
+                    dist_total++;
+                }
+            }
         }
+       
+        
     }
+    E.push_back(class_to_add);
+    
 }

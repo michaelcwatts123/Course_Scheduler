@@ -13,18 +13,19 @@
 #include <vector>
 #include "Conflict.hpp"
 #include "Class.hpp"
+#include "Linked_List.hpp"
 class ConflictManager{
 public:
+    ConflictManager();
     void buildConflictList(Class);
-    void reset();
     int getTotal();
-    int getDistinct();
+    int getDistTotal();
+    vector<Linked_List> getE();
     
 private:
     int total;
+    int dist_total;
+    vector<Linked_List> E;
 
-    vector<Conflict> conflicts;
-    
-    bool distinctCheck(string A, string B);
 };
 #endif /* ConflictManager_hpp */

@@ -15,29 +15,6 @@ using namespace std;
 void menu(int& numCourse, int& numStudent, int& numCoursePerStudent, int& sectionSize, string& split, string& dist);
 int main(int argc, const char * argv[]) {
 
-    Class C1(1,5);
-    Class C2(2,5);
-    Class C3(3,5);
-    Class C4(4,5);
-    Class C5(5,5);
-    Linked_List LL;
-    LL.add(C1);
-    LL.add(C2);
-    LL.add(C3);
-    LL.add(C4);
-    LL.add(C5);
-    assert(LL.getLength() == 5);
-    assert(LL.search(C2) == true);
-    LL.remove(C2);
-    assert(LL.search(C2) == false);
-    assert(LL.getLength() == 4);
-    LL.remove(C1);
-    assert(LL.search(C1) == false);
-    assert(LL.getLength() == 3);
-    LL.remove(C5);
-    assert(LL.search(C5) == false);
-    assert(LL.getLength() == 2);
-    cout << "Sick" << endl;
     
   /*
     
@@ -54,18 +31,18 @@ int main(int argc, const char * argv[]) {
 
     
     menu(numCourse, numStudent, numCoursePerStudent, sectionSize, split, dist);
-
+   //making the proper number of courses
     for(int i = 0; i < numCourse; i++){
         Class c(i, sectionSize);
         classes.push_back(c);
     }
   
     
-    
+    //making the proper number of students
     for(int i = 0; i < numStudent;i++){
         students.push_back(Student(i+1));
     }
-
+   //different dist methods to add courses to students
     if(dist == "UNIFORM"){
         students = uniform(students, numCoursePerStudent, numCourse);
     }
@@ -78,17 +55,13 @@ int main(int argc, const char * argv[]) {
     if(dist == "NORMAL"){
         students = normalish(students, numCoursePerStudent, numCourse);
     }
-
+   
+   //adding students to each  of their courses
     for(int i = 0; i < classes.size(); i++){
         for(int j = 0; j < students.size(); j++){
             classes.at(i).studentCheck(students.at(j));
         }
     }
-    for(int i = 0; i < classes.size(); i++){
-        classes.at(i).detect_conflict();
-        CM.buildConflictList(classes.at(i));
-    }
-
 
     
     if(split == "BASIC"){
@@ -100,14 +73,13 @@ int main(int argc, const char * argv[]) {
         classes = complex(classes, sectionSize);
      }
     
-
+   for(int i = 0; i < classes.size(); i++){
+    classes.at(i).detect_conflict();
+    CM.buildConflictList(classes.at(i));
+   }
     
     
-    total =0;
 
-    for(int i = 0; i < classes.size(); i++){
-        total += classes.at(i).getNumConflicts();
-    }
     
     cout << "Number of Courses Offered C: " << numCourse << endl;
     cout << "Number of Students S:" << numStudent << endl;
@@ -115,13 +87,9 @@ int main(int argc, const char * argv[]) {
     cout << "Section Size: " << sectionSize << endl;
     cout << "Split: " << split << endl;
     cout << "Dist: " << dist << endl;
-    cout << "Total Distinct Conflicts M:  " << total << endl;
-    CM.reset();
-    for(int i = 0; i < classes.size(); i++){
-        classes.at(i).detect_conflict();
-        CM.buildConflictList(classes.at(i));
-    }
-    cout << "Total Pair-Wise Sectional Conflicts T:  " << CM.getTotal() << endl;
+
+
+
      
 
 

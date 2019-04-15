@@ -20,6 +20,9 @@ int Class::getNumConflicts(){
 int Class::getSize(){
     return students.size();
 }
+int Class::get_section_size(){
+    return classSize;
+}
 double Class::getCourseNum(){
     return courseNum;
 }

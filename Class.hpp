@@ -22,6 +22,7 @@ public:
     Class();
     int getSize();
     int getNumConflicts();
+    int get_section_size();
     double getCourseNum();
     void setCourseNum(double);
     void detect_conflict();
