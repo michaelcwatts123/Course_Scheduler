@@ -16,7 +16,7 @@ void menu(int& numCourse, int& numStudent, int& numCoursePerStudent, int& sectio
 int main(int argc, const char * argv[]) {
 
     
-  /*
+  
     
     ConflictManager CM;
     vector<Student> students;
@@ -95,7 +95,7 @@ int main(int argc, const char * argv[]) {
 
 
     return 0;
-   */
+   
 }
 void menu(int& numCourse, int& numStudent, int& numCoursePerStudent, int& sectionSize, string& split, string& dist){
     cout << "Enter number of courses" << endl;

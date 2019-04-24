@@ -21,11 +21,13 @@ public:
     int getTotal();
     int getDistTotal();
     vector<Linked_List> getE();
+    vector<Linked_List> getP();
     
 private:
     int total;
     int dist_total;
     vector<Linked_List> E;
+    vector<Linked_List> P;
 
 };
 #endif /* ConflictManager_hpp */

@@ -19,6 +19,21 @@ int ConflictManager::getDistTotal(){
 vector<Linked_List> ConflictManager::getE(){
     return E;
 }
+vector<Linked_List> ConflictManager::getP(){
+    for(int i = 0; i < E.size(); i++){
+        Linked_List temp;
+        Class C(i+1, 0);
+        P.push_back(temp);
+    }
+    for(int i = 0; i < E.size(); i++){
+        for(int j = 0; j < P.size(); j++){
+            if(E.at(i).getLength() - 1 == P.at(j).getHead().getCourseNum()){
+                P.at(j).add(E.at(i).getHead());
+            }
+        }
+    }
+    return P;
+}
 void ConflictManager::buildConflictList(Class C){
     Linked_List class_to_add;
     class_to_add.add(C);
